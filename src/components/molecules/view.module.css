@@ -1,0 +1,14 @@
+
+.download-button {
+  text-decoration:underline;
+  cursor: pointer;
+}
+
+.download-menu {
+  display: flex;
+  justify-content: left;
+  gap: 20px;
+  font-size: 10px;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.3)
+}
