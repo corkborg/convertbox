@@ -6,8 +6,4 @@ const nextConfig = {
   trailingSlash: true,
 }
 
-if(environment === 'production') {
-  nextConfig['basePath'] = '/convert-tools'
-}
-
 module.exports = nextConfig
