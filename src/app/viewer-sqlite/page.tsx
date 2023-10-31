@@ -4,9 +4,6 @@ import { useEffect } from "react";
 
 export const metadata = {
   title: 'SQLiteファイルのブラウザビュワー',
-  robots: {
-    index: false,
-  },
 };
 
 export default function SQLiteViewer() {

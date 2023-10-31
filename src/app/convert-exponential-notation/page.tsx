@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import Pipeline from '@/components/pipeline/convert-e-pipeline'
+import ConvertEPipeline from '@/components/pipeline/convert-e-pipeline'
 import styles from './page.module.css'
 import MainTemplate from '@/components/main-template';
 
@@ -13,7 +13,7 @@ export default function Home() {
       <div>
         指数表記、E表記（eという記号が入った数値）で書かれた文字列を普通の数値表記に戻します。（e.g 2e3→2000）<br/>
       </div>
-      <Pipeline></Pipeline>
+      <ConvertEPipeline></ConvertEPipeline>
       <div>
         <h2 style={{
             margin: '10px 0',
