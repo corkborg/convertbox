@@ -1,6 +1,7 @@
 import Image from 'next/image'
-import Pipeline from '@/components/pipeline'
+import Pipeline from '@/components/pipeline/convert-e-pipeline'
 import styles from './page.module.css'
+import MainTemplate from '@/components/main-template';
 
 export const metadata = {
   title: '指数表記を普通の数値表記に戻す変換',
@@ -8,8 +9,7 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <>
-      <h1>{metadata.title}</h1>
+    <MainTemplate title={metadata.title}>
       <div>
         指数表記、E表記（eという記号が入った数値）で書かれた文字列を普通の数値表記に戻します。（e.g 2e3→2000）<br/>
       </div>
@@ -42,6 +42,6 @@ export default function Home() {
           逆に数値を指数表記に戻してやりたい場合はtoExponential()を使うことができます（<a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Number/toExponential">Number.prototype.toExponential()</a>）
         </p>
       </div>
-    </>
+    </MainTemplate>
   )
 }
