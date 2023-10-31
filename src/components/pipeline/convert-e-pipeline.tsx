@@ -3,9 +3,9 @@
 import {useState} from 'react';
 import Box from '@/components/organisms/box';
 import convert from '@/service/convert_exponential'
-import styles from './pipeline.module.css'
-import { MultilineInput } from './atoms/input';
-import { MultilineView } from './molecules/view';
+import styles from './convert-e-pipeline.module.css'
+import { MultilineInput } from '../atoms/input';
+import { MultilineView } from '../molecules/view';
 
 export default function Pipeline() {
   const [pipe1, setPipe1]= useState<string[]>([]);
