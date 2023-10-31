@@ -1,7 +1,6 @@
 "use client"
-import { DragEvent, useState } from "react";
-import { DragEventHandler, useEffect } from 'react';
-import initSqlJs, {SqlJsStatic, Database} from "sql.js"
+import { useMemo, useState } from "react";
+import initSqlJs, { Database } from "sql.js"
 import Box from "../organisms/box";
 import UploadFile from "../molecules/upload-file";
 import { TableView } from "../molecules/tableview";
@@ -56,14 +55,24 @@ export default function SQLiteViewerPipeline({}: Props) {
     setQuery(query)
   }
 
-  const executeQuery = () => {
-    if(database == null) return []
-    if(query == null) return []
+  const [records, setRecords] = useState<any[][]>([])
+  const [heads, setHeads] = useState<string[]>([])
+
+  useMemo(() => {
+    if(database == null) return
+    if(query == null) return
+
     const res = database.exec(query)
     const ress = res[0]
-    return ress.values
+    setRecords(ress.values)
+    setHeads(ress.columns)
+
+  }, [query])
+
+  const tableRecords = listTables().map(table => [table])
+  const tableClickHandler = (i: number) => {
+    setSimpleQuery(tableRecords[i][0])
   }
-  console.log("qr:", queryRevision)
 
   return (
     <Pipeline>
@@ -73,14 +82,19 @@ export default function SQLiteViewerPipeline({}: Props) {
         <Infomation>※データ読込み時、sqliteのプログラムを取得すために一回sql.js.orgのサーバにアクセスします。</Infomation>
       </Box>
       <Box title="テーブル一覧">
-        <div>テーブルを選択してください</div>
-        <SelectorList revision={dbRevision} records={listTables().map(table => [table, table])} onClick={setSimpleQuery}></SelectorList>
+        <div>テーブルを選択すると簡易クエリを発行します</div>
+        <TableView
+          dl={false}
+          heads={["table name"]}
+          onClick={tableClickHandler} 
+          revision={dbRevision} 
+          records={tableRecords}></TableView>
       </Box>
       <Box title="クエリ">
         <InputWait revision={queryRevision} defaultValue={query} onChange={changeQuery}></InputWait>
       </Box>
       <Box title="レコード">
-        <TableView revision={dbRevision} dlprefix='download' records={executeQuery()}></TableView>
+        <TableView revision={dbRevision} heads={heads} dlprefix='download' records={records}></TableView>
       </Box>
     </Pipeline>
   );

@@ -31,7 +31,7 @@ export default function BeautifyJSONPipeline({}: Props) {
   return (
     <Pipeline>
       <Box title="JSONの読み込み">
-        <div>SQLite3で作られたファイルを読み込みます</div>
+        <div>JSONを貼り付けてください</div>
         <InputSingle onChange={setInput}></InputSingle>
       </Box>
       <Box title="整形済みJSON">

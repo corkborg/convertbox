@@ -8,6 +8,8 @@ type Props = {
   records: any[][],
   heads?: string[],
   dlprefix?: string,
+  dl?: boolean,
+  onClick?: (index: number) => void // recordsのインデックス番号を返す
 }
 
 /**
@@ -15,7 +17,7 @@ type Props = {
  * @param param0 
  * @returns 
  */
-export function TableView({revision, records, dlprefix = 'download', heads}: Props) {
+export function TableView({onClick, revision, records, dl = true, dlprefix = 'download', heads}: Props) {
 
   const copyClipBoard = async () => {
     await navigator.clipboard.writeText(serializeCSV(records))
@@ -31,7 +33,7 @@ export function TableView({revision, records, dlprefix = 'download', heads}: Pro
 
   return (
     <>
-      <div className={styles['download-menu']}>
+      {dl && <div className={styles['download-menu']}>
         <div
           className={styles['download-button']}
           onClick={copyClipBoard}
@@ -45,8 +47,8 @@ export function TableView({revision, records, dlprefix = 'download', heads}: Pro
           onClick={downloadCSV}
           >CSVでダウンロード</div>
         <div>その他</div>
-      </div>
-      <Table revision={revision} records={records}></Table>
+      </div>}
+      <Table onClick={onClick} heads={heads} revision={revision} records={records}></Table>
     </>
   );
 }
