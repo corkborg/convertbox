@@ -6,12 +6,8 @@ import UploadFile from "../molecules/upload-file";
 import { TableView } from "../molecules/tableview";
 import Pipeline from "./pipeline";
 import { createRevision } from "@/service/input-revision";
-import { InputWait } from "../molecules/inputStringWait";
-import SelectorList from "../molecules/selectorList";
+import { InputWait } from "../molecules/inputSingleWait";
 import Infomation from "../atoms/infomation";
-
-type Props = {
-}
 
 async function createDatabase(file: File): Promise<Database> {
   const SQL = await initSqlJs({
@@ -24,7 +20,7 @@ async function createDatabase(file: File): Promise<Database> {
   return database;
 }
 
-export default function SQLiteViewerPipeline({}: Props) {
+export default function SQLiteViewerPipeline() {
   const [database, setDatabase] = useState<Database | undefined>(undefined);
   const [dbRevision, setDbRevision]= useState<string>(createRevision())
 
@@ -37,7 +33,7 @@ export default function SQLiteViewerPipeline({}: Props) {
 
   const listTables = (): string[] => {
     if(database == null) return []
-    const res = database.exec("SELECT NAME FROM sqlite_master WHERE type='table'")
+    const res = database.exec("SELECT name FROM sqlite_master WHERE type='table'")
     const ress = res[0]
     return ress.values.map(value => value[0] as string)
   }
@@ -66,7 +62,6 @@ export default function SQLiteViewerPipeline({}: Props) {
     const ress = res[0]
     setRecords(ress.values)
     setHeads(ress.columns)
-
   }, [query])
 
   const tableRecords = listTables().map(table => [table])
@@ -85,9 +80,9 @@ export default function SQLiteViewerPipeline({}: Props) {
         <div>テーブルを選択すると簡易クエリを発行します</div>
         <TableView
           dl={false}
-          heads={["table name"]}
-          onClick={tableClickHandler} 
-          revision={dbRevision} 
+          heads={["name"]}
+          onClick={tableClickHandler}
+          revision={dbRevision}
           records={tableRecords}></TableView>
       </Box>
       <Box title="クエリ">
