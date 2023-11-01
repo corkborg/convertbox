@@ -14,8 +14,8 @@ type Props = {
 
 /**
  * RDBから取得したレコードなどを表示するのに特化したビュワー
- * @param param0 
- * @returns 
+ * @param param0
+ * @returns
  */
 export function TableView({onClick, revision, records, dl = true, dlprefix = 'download', heads}: Props) {
 
@@ -46,7 +46,6 @@ export function TableView({onClick, revision, records, dl = true, dlprefix = 'do
           className={styles['download-button']}
           onClick={downloadCSV}
           >CSVでダウンロード</div>
-        <div>その他</div>
       </div>}
       <Table onClick={onClick} heads={heads} revision={revision} records={records}></Table>
     </>

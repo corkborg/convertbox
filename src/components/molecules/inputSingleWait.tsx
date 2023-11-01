@@ -1,4 +1,6 @@
 import { useState } from "react"
+import Button from "../atoms/button"
+import styles from './inputSingleWait.module.css'
 
 type Props = {
   revision: string,
@@ -9,20 +11,16 @@ type Props = {
 export function InputWait({revision, onChange, defaultValue}: Props) {
   const [value, setValue] = useState(defaultValue)
   return (
-  <>
-    <div><textarea 
+  <div className={styles.main}>
+    <textarea
       key={revision}
       defaultValue={defaultValue}
-      style={{
-        width: '100%',
-        margin: '10px 0',
-        padding: '10px',
-      }} onChange={e => setValue(e.target.value)} />
-    </div>
+      className={styles.textarea}
+      onChange={e => setValue(e.target.value)} />
+
     <div>
-      <button 
-        onClick={e => {if(value) onChange(value)}}
-        type="button">実行</button>
+      <Button
+        onClick={e => {if(value) onChange(value)}}>実行</Button>
     </div>
-  </>)
+  </div>)
 }
