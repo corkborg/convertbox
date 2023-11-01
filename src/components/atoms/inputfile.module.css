@@ -1,0 +1,17 @@
+
+.label {
+  padding: 8px;
+  color: #767676;
+  background-color: #ffffff;
+  cursor: pointer;
+  font-size: 12px;
+  border-style: outset;
+  border-radius: 5px;
+  height: 30px;
+  border-width: 2px;
+}
+
+.input {
+  display: none;
+  width: 0;
+}

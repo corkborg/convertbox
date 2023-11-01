@@ -1,9 +1,10 @@
 import { DragEvent } from "react";
+import styles from './dropfile.module.css'
+import InputFile from "./inputfile";
 
 type Props = {
-  onDropFile: (file: File) => {}
+  onDropFile: (file: File) => void
 }
-
 
 export default function DropFile({onDropFile}: Props) {
 
@@ -16,13 +17,14 @@ export default function DropFile({onDropFile}: Props) {
     }
   }
 
-
   return (
     <div
+      className={styles.dropzone}
       onDragOver={(event) => event.preventDefault()}
-      onDrop={dropHandler}
-      style={{width: '200px', 'height': '100px', backgroundColor: '#999'}}>
-      dropzone
+      onDrop={dropHandler}>
+      <div>
+        ファイルをドロップ
+      </div>
     </div>
   );
 }

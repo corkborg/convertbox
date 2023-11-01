@@ -1,7 +1,8 @@
 import { ChangeEvent } from "react";
+import styles from './inputfile.module.css'
 
 type Props = {
-  onInputFile: (file: File) => {}
+  onInputFile: (file: File) => void
 }
 
 export default function InputFile({onInputFile}: Props) {
@@ -11,5 +12,8 @@ export default function InputFile({onInputFile}: Props) {
     const file = files[0];
     onInputFile(file);
   }
-  return <input type="file" onChange={changeHandler} />
+  return <label className={styles.label}>
+    ファイルを選択
+    <input className={styles.input} type="file" onChange={changeHandler} />
+  </label>
 }
