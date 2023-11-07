@@ -9,6 +9,7 @@ export default function Home() {
       <Link href="beautify-json">beautify-json</Link>
       <Link href="encode-base64">encode-base64</Link>
       <Link href="decode-base64">decode-base64</Link>
+      <Link href="wd14-tagger">wd14-tagger</Link>
     </MainTemplate>
   )
 }
