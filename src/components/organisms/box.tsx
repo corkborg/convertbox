@@ -4,7 +4,7 @@ import styles from './box.module.css'
 
 type Props = {
   children: ReactNode,
-  title: string,
+  title: string | ReactNode,
 }
 
 export default function Box({children, title}: Props) {

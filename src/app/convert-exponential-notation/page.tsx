@@ -1,10 +1,10 @@
-import Image from 'next/image'
 import ConvertEPipeline from '@/components/pipeline/convert-e-pipeline'
 import styles from './page.module.css'
 import MainTemplate from '@/components/main-template';
 
 export const metadata = {
   title: '指数表記を普通の数値表記に戻す変換',
+  description: '指数表記、E表記（eという記号が入った数値）で書かれた文字列を普通の数値表記に戻すブラウザツールです'
 };
 
 export default function Home() {

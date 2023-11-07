@@ -3,7 +3,8 @@ import SQLiteViewerPipeline from "@/components/pipeline/sqlite-viewer-pipeline";
 import { useEffect } from "react";
 
 export const metadata = {
-  title: 'SQLiteファイルのブラウザビュワー',
+  title: 'SQLiteファイルのブラウザビュワーツール',
+  description: 'SQLite3のファイルをブラウザ上で閲覧するツールです。\nブラウザ上でクエリを打つことができます。',
 };
 
 export default function SQLiteViewer() {
