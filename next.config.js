@@ -10,10 +10,7 @@ const nextConfig = {
     }
     config.module.rules.push({
       test: /\.wasm$/,
-      type: 'javascript/auto',
-      use: [
-        { loader: 'file-loader' }
-      ]
+      type: 'asset/resource',
     })
     return config;
   },

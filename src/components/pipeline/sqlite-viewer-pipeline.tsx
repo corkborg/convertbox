@@ -11,8 +11,7 @@ import useStateRev from "@/utils/useStateRevision";
 
 async function createDatabase(file: File): Promise<Database> {
   const SQL = await initSqlJs({
-    // TODO: いずれバンドルしたWASMで動かせるようにしたい
-    locateFile: (file: string) => `https://sql.js.org/dist/${file}`,
+    locateFile: () => (new URL("sql.js/dist/sql-wasm.wasm", import.meta.url)).toString(),
   })
   const arrayBuffer = await file.arrayBuffer()
   const buffer = Buffer.from(arrayBuffer);
@@ -93,7 +92,6 @@ export default function SQLiteViewerPipeline() {
       <Box title="SQLite3ファイルの読み込み">
         <div>SQLite3で作られたファイルを読み込みます</div>
         <UploadFile errorMessage={databaseError} uploadedFile={fileHandler}></UploadFile>
-        <Infomation>※データ読込み時、sqliteのプログラムを取得すために一回sql.js.orgのサーバにアクセスします。</Infomation>
       </Box>
       <Box title="テーブル一覧">
         <div>テーブルを選択すると簡易クエリを発行します</div>

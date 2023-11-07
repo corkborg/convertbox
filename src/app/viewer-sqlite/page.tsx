@@ -1,6 +1,5 @@
 import MainTemplate from "@/components/main-template";
 import SQLiteViewerPipeline from "@/components/pipeline/sqlite-viewer-pipeline";
-import { useEffect } from "react";
 
 export const metadata = {
   title: 'SQLiteファイルのブラウザビュワーツール',
