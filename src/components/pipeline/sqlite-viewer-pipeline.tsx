@@ -11,8 +11,7 @@ import Infomation from "../atoms/infomation";
 
 async function createDatabase(file: File): Promise<Database> {
   const SQL = await initSqlJs({
-    // TODO: いずれバンドルしたWASMで動かせるようにしたい
-    locateFile: (file: string) => `https://sql.js.org/dist/${file}`,
+    locateFile: () => (new URL("sql.js/dist/sql-wasm.wasm", import.meta.url)).toString(),
   })
   const arrayBuffer = await file.arrayBuffer()
   const buffer = Buffer.from(arrayBuffer);
