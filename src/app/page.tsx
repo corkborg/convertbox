@@ -5,6 +5,8 @@ import * as beautify_json from '@/app/beautify-json/page'
 import * as sqllite_viewer from '@/app/viewer-sqlite/page'
 import * as decode_base64 from '@/app/decode-base64/page'
 import * as encode_base64 from '@/app/encode-base64/page'
+import * as json_to_yaml from '@/app/json-to-yaml/page'
+import * as yaml_to_json from '@/app/yaml-to-json/page'
 import Box from '@/components/organisms/box'
 
 type PageLinkProps = {
@@ -34,6 +36,8 @@ export default function Home() {
       <PageLink url="beautify-json" pageData={beautify_json}></PageLink>
       <PageLink url="encode-base64" pageData={encode_base64}></PageLink>
       <PageLink url="decode-base64" pageData={decode_base64}></PageLink>
+      <PageLink url="json-to-yaml" pageData={json_to_yaml}></PageLink>
+      <PageLink url="yaml-to-json" pageData={yaml_to_json}></PageLink>
     </MainTemplate>
   )
 }
