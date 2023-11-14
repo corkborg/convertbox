@@ -15,7 +15,7 @@ export default function JSONtoYAMLPipeline() {
       const obj = yaml.parse(input)
       output = yaml.stringify(obj)
     } catch(e) {
-      if (e instanceof SyntaxError) {
+      if (e instanceof Error) {
         output = e.message
       } else {
         output = "UNKNOWN ERROR"
