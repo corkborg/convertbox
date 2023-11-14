@@ -12,7 +12,7 @@ export default function ConvertEPipeline() {
   const [pipe1, setPipe1]= useState<string[]>([])
   // 入力データのバージョン
   const [revision, setRevision]= useState<string>(createRevision())
-  
+
   const changeHandler = (records: string[]) => {
     setRevision(createRevision())
     setPipe1(records)
@@ -32,7 +32,7 @@ export default function ConvertEPipeline() {
   return (
     <Pipeline>
       <Box title="入力">
-        <div>指数表記の数値を入力してください。複数行入力することもできます</div>
+        <div>指数表記の数値を入力してください。</div>
         <div>
           <MultilineInput onChange={changeHandler} />
         </div>
