@@ -10,10 +10,17 @@ import useStateRev from "@/utils/useStateRevision";
 
 export default function DecodeBase64Pipeline() {
 
-  const [inputs, setInputs, inputRevision] = useStateRev<string[]>([]) 
+  const [inputs, setInputs, inputRevision] = useStateRev<string[]>([])
+  const [error, setError] = useState<string | undefined>()
 
   const records = inputs.map(input => {
-    return [UTF8ArrToStr(base64DecToArr(input))]
+    try {
+      return [UTF8ArrToStr(base64DecToArr(input))]
+    } catch(e) {
+      if(e instanceof Error) {
+        return[`(ERROR) ${e.message}`]
+      }
+    }
   })
 
   return (

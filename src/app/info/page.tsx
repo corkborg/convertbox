@@ -19,7 +19,7 @@ export default function InfoPage() {
 
         <h2>ソースコード</h2>
         <p>
-          ソースコードは下記で管理しています
+          ソースコードは下記で管理しています<br/>
           <a href="https://github.com/corkborg/convertbox">https://github.com/corkborg/convertbox</a>
         </p>
 
