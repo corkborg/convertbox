@@ -1,6 +1,4 @@
 import MainTemplate from "@/components/main-template";
-import JSONtoYAMLPipeline from "@/components/pipeline/json-to-yaml-pipeline";
-import SQLiteViewerPipeline from "@/components/pipeline/sqlite-viewer-pipeline";
 import YAMLtoJSONPipeline from "@/components/pipeline/yaml-to-json-pipeline";
 
 export const metadata = {

@@ -1,6 +1,5 @@
 import MainTemplate from "@/components/main-template";
 import JSONtoYAMLPipeline from "@/components/pipeline/json-to-yaml-pipeline";
-import SQLiteViewerPipeline from "@/components/pipeline/sqlite-viewer-pipeline";
 
 export const metadata = {
   title: 'JSONからYAMLに変換するツール',
