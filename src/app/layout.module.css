@@ -46,6 +46,10 @@
   text-shadow: 1px 2px 3px rgba(30, 30, 30, 0.1);
 }
 
+.header_link {
+  white-space: nowrap;
+}
+
 .main-parent {
   grid-area: bd;
   padding: 10px;

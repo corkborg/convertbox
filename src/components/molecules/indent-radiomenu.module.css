@@ -1,0 +1,10 @@
+
+.main {
+  display: flex;
+  column-gap: 20px;
+  row-gap: 5px;
+  flex-wrap: wrap;
+}
+.menu {
+
+}

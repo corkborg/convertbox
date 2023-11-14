@@ -14,8 +14,8 @@ export default function InputSingle({onChange, defaultValue, height}: Props) {
   }
   style['height'] = height
 
-  return <textarea 
+  return <textarea
     defaultValue={defaultValue}
-      style={style} 
+    style={style}
     onChange={e => onChange(e.target.value)} />
 }

@@ -23,7 +23,12 @@ export default function Table({onClick, revision, records, heads}: Props) {
 
   const recordsDom = records.map((record, i) => {
     const wrapOnClick = onClick ? () => onClick(i) : undefined
-    return <Record onClick={wrapOnClick} revision={revision} record={record} index={i} ></Record>
+    return <Record
+      key={revision}
+      onClick={wrapOnClick}
+      revision={revision}
+      record={record}
+      index={i} ></Record>
   })
   const tbody = <tbody>{recordsDom}</tbody>
   return (

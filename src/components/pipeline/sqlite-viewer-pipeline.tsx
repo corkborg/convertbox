@@ -26,9 +26,16 @@ export default function SQLiteViewerPipeline() {
 
   // ファイルを受け取ってDBを初期化する
   const fileHandler = async (file: File) => {
-    const db = await createDatabase(file)
-    setDatabase(db)
-    setDatabaseError(undefined)
+    try {
+      const db = await createDatabase(file)
+      setDatabase(db)
+      setDatabaseError(undefined)
+    } catch(e) {
+      console.error(e)
+      if(e instanceof Error) {
+        setDatabaseError(e.message)
+      }
+    }
   }
 
   const [listTables, setListTables] = useState<string[]>([])
@@ -41,7 +48,7 @@ export default function SQLiteViewerPipeline() {
       const listTables = ress.values.map(value => value[0] as string)
       setListTables(listTables)
     } catch(e) {
-      console.log(e)
+      console.error(e)
       if(e instanceof Error) {
         setDatabaseError(e.message)
       }
@@ -90,7 +97,10 @@ export default function SQLiteViewerPipeline() {
   return (
     <Pipeline>
       <Box title="SQLite3ファイルの読み込み">
-        <div>SQLite3で作られたファイルを読み込みます</div>
+        <div>
+          SQLite3で作られたファイルを読み込みます。<br/>
+          数GB単位の大きなファイルだとうまく読み込むことができない場合があります。
+        </div>
         <UploadFile errorMessage={databaseError} uploadedFile={fileHandler}></UploadFile>
       </Box>
       <Box title="テーブル一覧">
