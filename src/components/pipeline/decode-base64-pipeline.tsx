@@ -20,6 +20,7 @@ export default function DecodeBase64Pipeline() {
       if(e instanceof Error) {
         return[`(ERROR) ${e.message}`]
       }
+      return [`(ERROR)`]
     }
   })
 
