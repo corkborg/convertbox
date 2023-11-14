@@ -7,9 +7,9 @@ import yaml from 'yaml'
 
 export default function JSONtoYAMLPipeline() {
 
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('');
 
-  let output = ""
+  let output = ''
   if(input) {
     try {
       const obj = yaml.parse(input)
@@ -25,15 +25,19 @@ export default function JSONtoYAMLPipeline() {
 
   return (
     <Pipeline>
-      <Box title="JSONの読み込み">
+      <Box title='JSONの読み込み'>
         <div>
           JSONを貼り付けてください<br/>
           YAML混じりのJSONも読み込むことができます。
         </div>
         <InputSingle onChange={setInput}></InputSingle>
       </Box>
-      <Box title="YAMLの出力">
-        <InputSingle height="250px" key={input} defaultValue={output} onChange={() => {}}></InputSingle>
+      <Box title='YAMLの出力'>
+        <InputSingle
+          height='250px'
+          key={input}
+          defaultValue={output}
+          onChange={() => {}}></InputSingle>
       </Box>
     </Pipeline>
   );

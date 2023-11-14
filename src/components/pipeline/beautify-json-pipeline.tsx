@@ -1,15 +1,14 @@
 "use client"
-import { useState } from "react";
 import Box from "../organisms/box";
 import Pipeline from "./pipeline";
 import InputSingle from "../atoms/inputSingle";
-import Radiomenu from "../molecules/radiomenu";
 import useStateRev from "@/utils/useStateRevision";
 import IndentRadioMenu from "../molecules/indent-radiomenu";
+import { useState } from "react";
 
 export default function BeautifyJSONPipeline() {
 
-  const [input, setInput, revision] = useStateRev("");
+  const [input, setInput] = useState('');
 
   const formatMenu = [
     {id: "twospace", name: "2スペース"},
@@ -40,7 +39,7 @@ export default function BeautifyJSONPipeline() {
 
   return (
     <Pipeline>
-      <Box title="JSONの読み込み">
+      <Box title='JSONの読み込み'>
         <div>JSONを貼り付けてください</div>
         <InputSingle onChange={setInput}></InputSingle>
       </Box>
@@ -48,8 +47,8 @@ export default function BeautifyJSONPipeline() {
         <IndentRadioMenu
           onChangeIndent={(indent) => setIndent(indent)}></IndentRadioMenu>
       </Box>
-      <Box title="整形済みJSON">
-        <InputSingle height="250px" key={`${revision}-${indentRevision}`} defaultValue={output} onChange={() => {}}></InputSingle>
+      <Box title='整形済みJSON'>
+        <InputSingle height="250px" defaultValue={output} onChange={() => {}}></InputSingle>
       </Box>
     </Pipeline>
   );

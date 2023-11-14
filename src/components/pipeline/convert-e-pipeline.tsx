@@ -31,13 +31,13 @@ export default function ConvertEPipeline() {
 
   return (
     <Pipeline>
-      <Box title="入力">
+      <Box title='入力'>
         <div>指数表記の数値を入力してください。</div>
         <div>
           <MultilineInput onChange={changeHandler} />
         </div>
       </Box>
-      <Box title="変換結果">
+      <Box title='変換結果'>
         <TableView revision={revision} dlprefix='download' records={output1}></TableView>
       </Box>
     </Pipeline>
