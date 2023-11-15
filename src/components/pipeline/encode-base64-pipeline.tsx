@@ -13,7 +13,7 @@ type Props = {
 
 export default function EncodeBase64Pipeline({}: Props) {
 
-  const [inputs, setInputs, inputRevision] = useStateRev<string[]>([]) 
+  const [inputs, setInputs, inputRevision] = useStateRev<string[]>([])
 
   const records = inputs.map(input => {
     return [base64EncArr(strToUTF8Arr(input))]
@@ -21,7 +21,7 @@ export default function EncodeBase64Pipeline({}: Props) {
 
   return (
     <Pipeline>
-      <Box title="Base64の変換">
+      <Box title="変換元文字列">
         <div>変換対象の文字列を入力してください</div>
         <MultilineInput onChange={setInputs}></MultilineInput>
       </Box>
