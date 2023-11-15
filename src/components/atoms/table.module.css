@@ -9,16 +9,25 @@
   padding: 5px;
   font-weight: bold;
   text-align: left;
-  color: rgba(0,0,0,0.7)
+  color: rgba(0,0,0,0.7);
 }
 
 .td {
   border-bottom-style: solid;
   border-color: rgba(0, 0, 0, 0.1);
-  border-collapse: separate;
+  border-collapse: collapse;
   border-spacing: 0;
   height: 1rem;
   padding: 5px;
+  vertical-align: top;
+  min-width: 80px;
+  text-wrap: nowrap;
+}
+
+.td-limited {
+  max-width: 500px;
+  text-overflow: ellipsis;
+  overflow: scroll;
 }
 
 .table {
@@ -30,7 +39,7 @@
   border-style: solid;
   border-color: rgb(0,0,0,0.2);
   border-radius: 10px;
-  max-height: 300px;
+  min-height: 50px;
   overflow: auto;
   background-color: rgb(253 253 253);
   margin: 10px 0;

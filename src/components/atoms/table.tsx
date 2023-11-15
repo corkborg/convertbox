@@ -10,6 +10,7 @@ type Props = {
 
 export default function Table({onClick, revision, records, heads}: Props) {
 
+  // ヘッダーの構築
   let theadDom: ReactNode[] = []
   if(heads) {
     const headsDom = heads.map((head, i) => {
@@ -21,17 +22,20 @@ export default function Table({onClick, revision, records, heads}: Props) {
     </thead>]
   }
 
+  // ボディの構築
   const recordsDom = records.map((record, i) => {
     const wrapOnClick = onClick ? () => onClick(i) : undefined
-    const key = `record-${revision}-${i}`
+    const key = `records-${revision}-${i}`
     return <Record
       key={key}
       onClick={wrapOnClick}
-      revision={revision}
+      revision={key}
       record={record}
       index={i} ></Record>
   })
   const tbody = <tbody>{recordsDom}</tbody>
+
+
   return (
     <div  className={styles.wrap}>
       <table key={`table-${revision}`} className={styles.table}>
@@ -46,16 +50,15 @@ type RecordProps = {
   revision: string
   record: any[]
   index: number
+  column_width_limit: boolean
   onClick?: () => void // recordsのインデックス番号を返す
 }
 
-function Record({onClick, revision, record, index}: RecordProps) {
+function Record({column_width_limit, onClick, revision, record, index}: RecordProps) {
   const style: CSSProperties = onClick ? {cursor: 'pointer'}: {}
-
-  const recordKey = `${revision}-${index}`
-  const recordDom = record.map(value => {
-    const valueKey = `${recordKey}-${value}`
+  const recordDom = record.map((value, i) => {
+    const valueKey = `${revision}-${i}`
     return <td onClick={onClick} style={style} key={valueKey} className={styles.td}>{value}</td>
   })
-  return <tr key={recordKey}>{recordDom}</tr>
+  return <tr>{recordDom}</tr>
 }
