@@ -50,7 +50,7 @@ type RecordProps = {
   revision: string
   record: any[]
   index: number
-  column_width_limit: boolean
+  column_width_limit?: boolean
   onClick?: () => void // recordsのインデックス番号を返す
 }
 
