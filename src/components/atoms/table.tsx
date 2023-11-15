@@ -13,18 +13,19 @@ export default function Table({onClick, revision, records, heads}: Props) {
   let theadDom: ReactNode[] = []
   if(heads) {
     const headsDom = heads.map((head, i) => {
-      const key = `${revision}-${i}`
+      const key = `head-${revision}-${i}`
       return <th key={key} className={styles.th}>{head}</th>
     })
-    theadDom = [<thead key={revision}>
+    theadDom = [<thead key={`head-${revision}`}>
       <tr>{headsDom}</tr>
     </thead>]
   }
 
   const recordsDom = records.map((record, i) => {
     const wrapOnClick = onClick ? () => onClick(i) : undefined
+    const key = `record-${revision}-${i}`
     return <Record
-      key={revision}
+      key={key}
       onClick={wrapOnClick}
       revision={revision}
       record={record}
@@ -32,8 +33,8 @@ export default function Table({onClick, revision, records, heads}: Props) {
   })
   const tbody = <tbody>{recordsDom}</tbody>
   return (
-    <div className={styles.wrap}>
-      <table className={styles.table}>
+    <div  className={styles.wrap}>
+      <table key={`table-${revision}`} className={styles.table}>
         {theadDom}
         {tbody}
       </table>
