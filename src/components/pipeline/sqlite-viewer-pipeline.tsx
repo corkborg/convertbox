@@ -6,7 +6,6 @@ import UploadFile from "../molecules/upload-file";
 import { TableView } from "../molecules/tableview";
 import Pipeline from "./pipeline";
 import { InputWait } from "../molecules/inputSingleWait";
-import Infomation from "../atoms/infomation";
 import useStateRev from "@/utils/useStateRevision";
 
 async function createDatabase(file: File): Promise<Database> {
@@ -116,7 +115,7 @@ export default function SQLiteViewerPipeline() {
         <InputWait errorMessage={queryError} revision={queryRevision} defaultValue={query} onChange={changeQuery}></InputWait>
       </Box>
       <Box title="レコード">
-        <TableView revision={dbRevision} heads={heads} dlprefix='download' records={records}></TableView>
+        <TableView revision={`tableview-${dbRevision}-${queryRevision}`} heads={heads} dlprefix='download' records={records}></TableView>
       </Box>
     </Pipeline>
   );
