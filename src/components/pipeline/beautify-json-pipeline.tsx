@@ -5,6 +5,7 @@ import InputSingle from "../atoms/inputSingle";
 import useStateRev from "@/utils/useStateRevision";
 import IndentRadioMenu from "../molecules/indent-radiomenu";
 import { useState } from "react";
+import JSON5 from 'json5';
 
 export default function BeautifyJSONPipeline() {
 
@@ -26,7 +27,7 @@ export default function BeautifyJSONPipeline() {
   let output = ""
   if(input) {
     try {
-      const obj = JSON.parse(input)
+      const obj = JSON5.parse(input)
       output = JSON.stringify(obj, null , indent)
     } catch(e) {
       if (e instanceof SyntaxError) {
