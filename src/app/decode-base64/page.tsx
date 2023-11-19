@@ -12,7 +12,8 @@ export default function DecodeBase64() {
     <div>
       <p>{metadata.description}</p>
       <p>
-        文字列ではなくバイト列をエンコードしたBase64文字列の場合エラーになることがあります。（(ERROR)という文字になります）
+        文字列ではなくバイト列をエンコードしたBase64文字列をデコード使用とした場合にエラーになることがあります。<br/>
+        （(ERROR)という文字になります）
       </p>
     </div>
     <DecodeBase64Pipeline></DecodeBase64Pipeline>
