@@ -3,7 +3,7 @@ import BeautifyJSONPipeline from "@/components/pipeline/beautify-json-pipeline";
 
 export const metadata = {
   title: 'JSONを綺麗にするツール',
-  description: 'JSONを見やすく整形する（beautify）するためのブラウザツールです'
+  description: 'JSONにインデントを追加して見やすく整形する（beautify）するためのブラウザツールです'
 };
 
 export default function BautifyJSON() {
