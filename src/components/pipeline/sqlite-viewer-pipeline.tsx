@@ -44,8 +44,12 @@ export default function SQLiteViewerPipeline() {
     try {
       const res = database.exec("SELECT name FROM sqlite_master WHERE type='table'")
       const ress = res[0]
-      const listTables = ress.values.map(value => value[0] as string)
-      setListTables(listTables)
+      if(ress.values) {
+        const listTables = ress.values.map(value => value[0] as string);
+        setListTables(listTables)
+      } else {
+        setListTables([])
+      }
     } catch(e) {
       console.error(e)
       if(e instanceof Error) {
@@ -77,9 +81,14 @@ export default function SQLiteViewerPipeline() {
     try{
       const res = database.exec(query)
       const ress = res[0]
-      setRecords(ress.values)
-      setQueryError(undefined)
-      setHeads(ress.columns)
+
+      if(ress?.values) {
+        setRecords(ress.values)
+        setQueryError(undefined)
+        setHeads(ress.columns)
+      } else {
+        setRecords([])
+      }
     } catch(e) {
       console.error(e)
       if(e instanceof Error) {
