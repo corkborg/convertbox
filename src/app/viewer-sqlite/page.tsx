@@ -2,7 +2,7 @@ import MainTemplate from "@/components/main-template";
 import SQLiteViewerPipeline from "@/components/pipeline/sqlite-viewer-pipeline";
 
 export const metadata = {
-  title: 'SQLiteファイルのブラウザビュワーツール',
+  title: 'SQLiteファイルの閲覧ツール',
   description: 'SQLite3のファイルをブラウザ上で閲覧するツールです。\nブラウザ上でクエリを打つことができます。',
 };
 
