@@ -22,7 +22,6 @@ export default function BeautifyJSONPipeline({}: Props) {
       } else {
         output = "UNKNOWN ERROR"
       }
-      
     }
   }
 

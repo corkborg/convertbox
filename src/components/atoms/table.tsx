@@ -12,8 +12,11 @@ export default function Table({onClick, revision, records, heads}: Props) {
 
   let theadDom: ReactNode[] = []
   if(heads) {
-    const headsDom = heads.map(head => <th className={styles.th}>{head}</th>)
-    theadDom = [<thead>
+    const headsDom = heads.map((head, i) => {
+      const key = `${revision}-${i}`
+      return <th key={key} className={styles.th}>{head}</th>
+    })
+    theadDom = [<thead key={revision}>
       <tr>{headsDom}</tr>
     </thead>]
   }

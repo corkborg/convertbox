@@ -5,9 +5,9 @@ import Box from "../organisms/box";
 import UploadFile from "../molecules/upload-file";
 import { TableView } from "../molecules/tableview";
 import Pipeline from "./pipeline";
-import { createRevision } from "@/service/input-revision";
 import { InputWait } from "../molecules/inputSingleWait";
 import Infomation from "../atoms/infomation";
+import useStateRev from "@/utils/useStateRevision";
 
 async function createDatabase(file: File): Promise<Database> {
   const SQL = await initSqlJs({
@@ -20,26 +20,38 @@ async function createDatabase(file: File): Promise<Database> {
   return database;
 }
 
-export default function SQLiteViewerPipeline() {
-  const [database, setDatabase] = useState<Database | undefined>(undefined);
-  const [dbRevision, setDbRevision]= useState<string>(createRevision())
 
+export default function SQLiteViewerPipeline() {
+  const [database, setDatabase, dbRevision] = useStateRev<Database | undefined>(undefined);
+  const [databaseError, setDatabaseError] = useState<string | undefined>(undefined);
+
+  // ファイルを受け取ってDBを初期化する
   const fileHandler = async (file: File) => {
     const db = await createDatabase(file)
-
-    setDbRevision(createRevision())
-    setDatabase(db);
+    setDatabase(db)
+    setDatabaseError(undefined)
   }
 
-  const listTables = (): string[] => {
+  const [listTables, setListTables] = useState<string[]>([])
+  useMemo(() => {
     if(database == null) return []
-    const res = database.exec("SELECT name FROM sqlite_master WHERE type='table'")
-    const ress = res[0]
-    return ress.values.map(value => value[0] as string)
-  }
 
-  const [query, setQuery]= useState<string | undefined>(undefined)
-  const [queryRevision, setQueryRevision]= useState<string>(createRevision())
+    try {
+      const res = database.exec("SELECT name FROM sqlite_master WHERE type='table'")
+      const ress = res[0]
+      const listTables = ress.values.map(value => value[0] as string)
+      setListTables(listTables)
+    } catch(e) {
+      console.log(e)
+      if(e instanceof Error) {
+        setDatabaseError(e.message)
+      }
+      return [];
+    }
+  }, [database])
+
+  const [query, setQuery, queryRevision]= useStateRev<string | undefined>(undefined)
+  const [queryError, setQueryError]= useState<string | undefined>(undefined)
 
   const setSimpleQuery = (tableName: string) => {
     const query = `SELECT * FROM ${tableName} LIMIT 100`
@@ -47,7 +59,6 @@ export default function SQLiteViewerPipeline() {
   }
 
   const changeQuery = (query: string) => {
-    setQueryRevision(createRevision())
     setQuery(query)
   }
 
@@ -58,13 +69,21 @@ export default function SQLiteViewerPipeline() {
     if(database == null) return
     if(query == null) return
 
-    const res = database.exec(query)
-    const ress = res[0]
-    setRecords(ress.values)
-    setHeads(ress.columns)
+    try{
+      const res = database.exec(query)
+      const ress = res[0]
+      setRecords(ress.values)
+      setQueryError(undefined)
+      setHeads(ress.columns)
+    } catch(e) {
+      console.error(e)
+      if(e instanceof Error) {
+        setQueryError(e.message)
+      }
+    }
   }, [query])
 
-  const tableRecords = listTables().map(table => [table])
+  const tableRecords = listTables.map(table => [table])
   const tableClickHandler = (i: number) => {
     setSimpleQuery(tableRecords[i][0])
   }
@@ -73,7 +92,7 @@ export default function SQLiteViewerPipeline() {
     <Pipeline>
       <Box title="SQLite3ファイルの読み込み">
         <div>SQLite3で作られたファイルを読み込みます</div>
-        <UploadFile uploadedFile={fileHandler}></UploadFile>
+        <UploadFile errorMessage={databaseError} uploadedFile={fileHandler}></UploadFile>
         <Infomation>※データ読込み時、sqliteのプログラムを取得すために一回sql.js.orgのサーバにアクセスします。</Infomation>
       </Box>
       <Box title="テーブル一覧">
@@ -86,7 +105,7 @@ export default function SQLiteViewerPipeline() {
           records={tableRecords}></TableView>
       </Box>
       <Box title="クエリ">
-        <InputWait revision={queryRevision} defaultValue={query} onChange={changeQuery}></InputWait>
+        <InputWait errorMessage={queryError} revision={queryRevision} defaultValue={query} onChange={changeQuery}></InputWait>
       </Box>
       <Box title="レコード">
         <TableView revision={dbRevision} heads={heads} dlprefix='download' records={records}></TableView>
