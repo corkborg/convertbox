@@ -7,10 +7,7 @@ import Radiomenu from "../molecules/radiomenu";
 import useStateRev from "@/utils/useStateRevision";
 import IndentRadioMenu from "../molecules/indent-radiomenu";
 
-type Props = {
-}
-
-export default function BeautifyJSONPipeline({}: Props) {
+export default function BeautifyJSONPipeline() {
 
   const [input, setInput, revision] = useStateRev("");
 
