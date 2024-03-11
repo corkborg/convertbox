@@ -1,20 +1,25 @@
 import styles from './table.module.css'
 
+let key = Symbol("Key");
+
 type Props = {
+  revision: string,
   records: string[][],
   heads?: string[],
 }
-export default function Table({records, heads}: Props) {
-  const recordsDom = records.map(record => {
+export default function Table({revision, records, heads}: Props) {
+  const recordsDom = records.map((record, i) => {
+    const recordKey = `${revision}-${i}`
     const recordDom = record.map(value => {
-      return <td className={styles.td}>{value}</td>
+      const valueKey = `${recordKey}-${value}`
+      return <td key={valueKey} className={styles.td}>{value}</td>
     })
-    return <tr>{recordDom}</tr>
+    return <tr key={recordKey}>{recordDom}</tr>
   })
   const tbody = <tbody>{recordsDom}</tbody>
   return (
     <div className={styles.wrap}>
-      <table className={styles.table}>{[tbody]}</table>
+      <table className={styles.table}>{tbody}</table>
     </div>
   );
 }

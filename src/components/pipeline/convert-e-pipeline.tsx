@@ -3,12 +3,20 @@
 import {useState} from 'react';
 import Box from '@/components/organisms/box';
 import convert from '@/service/convert_exponential'
-import styles from './convert-e-pipeline.module.css'
-import { MultilineInput } from '../atoms/input';
-import { MultilineView } from '../molecules/view';
+import { MultilineInput } from '../atoms/inputMulti';
+import { TableView } from '../molecules/tableview';
+import Pipeline from './pipeline';
+import { createRevision } from '@/service/input-revision';
 
-export default function Pipeline() {
-  const [pipe1, setPipe1]= useState<string[]>([]);
+export default function ConvertEPipeline() {
+  const [pipe1, setPipe1]= useState<string[]>([])
+  // 入力データのバージョン
+  const [revision, setRevision]= useState<string>(createRevision())
+  
+  const changeHandler = (records: string[]) => {
+    setRevision(createRevision())
+    setPipe1(records)
+  }
 
   const output1 = pipe1.map(value => {
     const trimedValue = value.trim()
@@ -22,16 +30,16 @@ export default function Pipeline() {
   })
 
   return (
-    <div className={styles.pipeline}>
+    <Pipeline>
       <Box title="入力">
         <div>指数表記の数値を入力してください。複数行入力することもできます</div>
         <div>
-          <MultilineInput onChange={setPipe1} />
+          <MultilineInput onChange={changeHandler} />
         </div>
       </Box>
       <Box title="変換結果">
-        <MultilineView dlprefix='download' records={output1}></MultilineView>
+        <TableView revision={revision} dlprefix='download' records={output1}></TableView>
       </Box>
-    </div>
+    </Pipeline>
   )
 }

@@ -1,15 +1,21 @@
 import Table from '../atoms/table'
-import styles from './view.module.css'
+import styles from './tableview.module.css'
 import { serializeCSV, serializeTSV } from '@/service/serialize_records'
 import download from '@/service/download'
 
 type Props = {
-  records: string[][],
+  revision: string,
+  records: any[][],
   heads?: string[],
-  dlprefix: string,
+  dlprefix?: string,
 }
 
-export function MultilineView({records, dlprefix, heads}: Props) {
+/**
+ * RDBから取得したレコードなどを表示するのに特化したビュワー
+ * @param param0 
+ * @returns 
+ */
+export function TableView({revision, records, dlprefix = 'download', heads}: Props) {
 
   const copyClipBoard = async () => {
     await navigator.clipboard.writeText(serializeCSV(records))
@@ -40,7 +46,7 @@ export function MultilineView({records, dlprefix, heads}: Props) {
           >CSVでダウンロード</div>
         <div>その他</div>
       </div>
-      <Table records={records}></Table>
+      <Table revision={revision} records={records}></Table>
     </>
   );
 }

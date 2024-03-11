@@ -6,6 +6,6 @@ export function serializeCSV(records: any[][]) {
 }
 
 export function serializeTSV(records: any[][]) {
-  const recordsText = records.map(record => record.join('\n')).join('\n')
+  const recordsText = records.map(record => record.join('\t')).join('\n')
   return recordsText
 }
