@@ -15,7 +15,7 @@ export default function InfoPage() {
         問合せ、質問、不具合、要望等の場合は下記の手段でお願いします。
       </p>
       <p>
-        メール<br/>
+        メールアドレス（メール転送サービスを利用しています）<br/>
         ax4squil8<span>&#64;</span>mozmail.com
       </p>
       <p>
