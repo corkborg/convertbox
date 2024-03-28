@@ -33,9 +33,9 @@ export default function RootLayout({
                 </Link>
               </div>
               <div className={styles['header-description']}>
-                様々な変換をWeb上で行えるサイトです。<br/>
+                様々な変換を行えるサイトです。<br/>
                 入力データをサーバに送信しません。<br/>
-                変換処理は全てブラウザ上のJavaScriptで行っています。<br/>
+                変換処理は全て利用者のブラウザ内で完結しています。<br/>
                 そのため、データが流出せず安全に使用できます。
               </div>
               <div className={styles.header_link}><Link href="/info">サイト詳細</Link></div>
