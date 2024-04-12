@@ -2,6 +2,7 @@
 .main {
   display: flex;
   column-gap: 20px;
+  flex-direction: column;
 }
 .menu {
 

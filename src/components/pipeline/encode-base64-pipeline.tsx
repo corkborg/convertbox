@@ -23,7 +23,7 @@ export default function EncodeBase64Pipeline({}: Props) {
         <div>変換対象の文字列を入力してください</div>
         <MultilineInput onChange={setInputs}></MultilineInput>
       </Box>
-      <Box title="整形済みJSON">
+      <Box title="Base64文字列">
         <TableView records={records} revision={inputRevision}></TableView>
       </Box>
     </Pipeline>

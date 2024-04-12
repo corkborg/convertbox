@@ -1,12 +1,14 @@
 "use client"
 import { useState } from 'react'
 import styles from './indent-radiomenu.module.css'
+import unraw from 'unraw'
+import Radiomenu, { RadiomenuEntity } from './radiomenu'
 
-const formatMenu = [
-  {id: "twospace", name: "2スペース"},
-  {id: "fourspace", name: "4スペース"},
-  {id: "tab", name: "タブ"},
-  {id: "other", name: "その他"},
+const formatMenu: RadiomenuEntity[] = [
+  {id: "twospace", name: "2スペース", type: "standard", "value": "  "},
+  {id: "fourspace", name: "4スペース", type: "standard", "value": "    "},
+  {id: "tab", name: "タブ", type: "standard", "value": "\t"},
+  {id: "other", name: "その他", type: "textbox"},
 ]
 const formatEntities: {[id:string]: string} = {
   "twospace": '  ',
@@ -20,7 +22,9 @@ type Props = {
 
 export default function IndentRadioMenu({onChangeIndent}: Props) {
 
-    const [selected, setSelected] = useState(formatMenu[0].id)
+  return <Radiomenu entities={formatMenu} onChange={(id, value) => onChangeIndent(value as string)}></Radiomenu>
+
+    /*const [selected, setSelected] = useState(formatMenu[0].id)
 
     const normalChangeHandler = (id: string) => {
       setSelected(id)
@@ -33,7 +37,8 @@ export default function IndentRadioMenu({onChangeIndent}: Props) {
     }
 
     const otherChangIndentHandler = (indent: string) => {
-      onChangeIndent(eval(`"${indent}"`))
+      // エスケープシーケンス
+      onChangeIndent(unraw(indent))
     }
 
     const menuComponent = formatMenu.map(record => {
@@ -66,5 +71,5 @@ export default function IndentRadioMenu({onChangeIndent}: Props) {
 
     return <div className={styles.main}>
       {menuComponent}
-    </div>
+    </div>*/
   }

@@ -30,7 +30,7 @@ export default function DecodeBase64Pipeline() {
         <div>Base64文字列を入力してください</div>
         <MultilineInput onChange={setInputs}></MultilineInput>
       </Box>
-      <Box title="整形済みJSON">
+      <Box title="元文字列">
         <TableView records={records} revision={inputRevision}></TableView>
       </Box>
     </Pipeline>

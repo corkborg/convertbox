@@ -7,6 +7,7 @@ import * as decode_base64 from '@/app/decode-base64/page'
 import * as encode_base64 from '@/app/encode-base64/page'
 import * as json_to_yaml from '@/app/json-to-yaml/page'
 import * as yaml_to_json from '@/app/yaml-to-json/page'
+import * as encode_percent_encoding from '@/app/encode-percent-encoding/page'
 import Box from '@/components/organisms/box'
 
 type PageLinkProps = {
@@ -38,6 +39,7 @@ export default function Home() {
       <PageLink url="decode-base64" pageData={decode_base64}></PageLink>
       <PageLink url="json-to-yaml" pageData={json_to_yaml}></PageLink>
       <PageLink url="yaml-to-json" pageData={yaml_to_json}></PageLink>
+      <PageLink url="encode-percent-encoding" pageData={encode_percent_encoding}></PageLink>
     </MainTemplate>
   )
 }
