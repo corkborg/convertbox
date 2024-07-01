@@ -16,7 +16,7 @@ export default function InfoPage() {
       </p>
       <p>
         メールアドレス（メール転送サービスを利用しています）<br/>
-        ax4squil8<span>&#64;</span>mozmail.com
+        corkborg<span>&#64;</span>outlook.jp
       </p>
       <p>
         不具合や要望の場合はGithubの方に書いてもらうこともできます。<br/>
