@@ -17,7 +17,7 @@ export default function SQLiteViewer() {
     <div>
       <h2 style={{
           margin: '10px 0',
-        }}>技術仕様</h2>
+        }}>仕様</h2>
       <p>
         このブラウザツールでは、sqliteファイルを読み込むためにsql.jsというライブラリを使用しています。<br/>
         SQL.jsはSQLiteをWebAssembly向けにビルドしたプロジェクトでブラウザ上でSQLiteそのものを動かすことができます。<br/>
