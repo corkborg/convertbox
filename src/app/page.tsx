@@ -34,12 +34,13 @@ export default function Home() {
     <MainTemplate title="変換ツール一覧">
       <PageLink url="convert-exponential-notation" pageData={convert_exponential}></PageLink>
       <PageLink url="viewer-sqlite" pageData={sqllite_viewer}></PageLink>
+      <PageLink url="number-to-kanjiunit" pageData={number_to_kanjiunit}></PageLink>
       <PageLink url="beautify-json" pageData={beautify_json}></PageLink>
       <PageLink url="encode-base64" pageData={encode_base64}></PageLink>
       <PageLink url="decode-base64" pageData={decode_base64}></PageLink>
       <PageLink url="json-to-yaml" pageData={json_to_yaml}></PageLink>
       <PageLink url="yaml-to-json" pageData={yaml_to_json}></PageLink>
-      <PageLink url="number-to-kanjiunit" pageData={number_to_kanjiunit}></PageLink>
+      
     </MainTemplate>
   )
 }
